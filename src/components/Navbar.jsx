@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
     Link
 } from "react-router-dom";
@@ -6,27 +6,27 @@ import {
 
 const Navbar = () => {
 
-    const removeAllActive = async () => {
-        document.getElementsByClassName("nav-link").forEach(element => {
-            element.classList.remove("active")
-        });
-    }
+    // const removeAllActive = async () => {
+    //     document.getElementsByClassName("nav-link").forEach(element => {
+    //         element.classList.remove("active")
+    //     });
+    // }
 
-    const ActivateNavBar = async (element) => {
-        removeAllActive()
-        document.getElementsByClassName("nav-link").forEach((e) => {
-            e.addEventListener("click", (e) => {
-                e.classList.add("active")
-            })
-        })
-    }
+    // const ActivateNavBar = async (element) => {
+    //     removeAllActive()
+    //     document.getElementsByClassName("nav-link").forEach((e) => {
+    //         e.addEventListener("click", (e) => {
+    //             e.classList.add("active")
+    //         })
+    //     })
+    // }
 
 
 
 
     return (
         <>
-            <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
+            <nav className="navbar navbar-dark navbar-expand-lg bg-dark sticky-top">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/">News Monkey</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

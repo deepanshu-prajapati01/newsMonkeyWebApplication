@@ -10,7 +10,7 @@ const News = (props) => {
     const [articles, setArticles] = useState([])
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
-    const [totalResults, setTotalResults] = useState(0)
+    // const [totalResults, setTotalResults] = useState(0)
     const [hasError, setHasError] = useState("False")
 
 
@@ -24,8 +24,7 @@ const News = (props) => {
         props.setProgress(60)
         setArticles(parsedData.articles)
         setLoading(false)
-        setPage(page + 1)
-        setTotalResults(parsedData.totalResults)
+        // setTotalResults(parsedData.totalResults)
         setHasError("False")
         props.setProgress(100)
     }
@@ -33,23 +32,28 @@ const News = (props) => {
 
     useEffect(() => {
         updateNews()
-    }, [])
+    })
 
     const fetchMoreData = async () => {
+        let api = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&pageSize=${props.pageSize}&page=${page + 1}`;
         setPage(page + 1)
 
-        let api = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&pageSize=${props.pageSize}&page=${page}`;
-
         let data = await fetch(api);
-        if (data.status === 426) {
-            setHasError("True")
-            setLoading(false)
-        } else if ((data.status >= 200) && (data.status <= 299)) {
+
+        if ((data.status >= 200) && (data.status <= 299)) {
             let parsedData = await data.json()
             setArticles(articles.concat(parsedData.articles))
             setLoading(false)
-            setTotalResults(parsedData.totalResults)
+            // setTotalResults(parsedData.totalResults)
             setHasError("False")
+        }
+        else {
+            if (data.status === 426 || data.status === 429) {
+                console.log(`ERROR CODE: ${data.status}`)
+                console.log(data.statusText)
+            }
+            setHasError("True")
+            setLoading(false)
         }
 
     }
@@ -60,7 +64,7 @@ const News = (props) => {
 
     return (
         <>
-            <h1 className='text-center' style={{ marginBottom: "1rem" }}>NewsMonkey - Top Headlines</h1>
+            <h1 className='text-center' style={{ margin: "1rem" }}>NewsMonkey - Top Headlines</h1>
             {loading === true ? <Spinner /> : null}
             <InfiniteScroll
                 dataLength={articles}
