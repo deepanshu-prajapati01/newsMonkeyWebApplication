@@ -57,10 +57,16 @@ export class News extends Component {
     // }
 
     async componentDidMount() {
+        this.props.setProgress(20)
         let api = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.pageSize}&page=${this.state.page}`;
 
         let data = await fetch(api);
+
+        this.props.setProgress(40)
+
+
         let parsedData = await data.json()
+        this.props.setProgress(60)
         this.setState({
             articles: parsedData.articles,
             loading: false,
@@ -68,6 +74,7 @@ export class News extends Component {
             totalResults: parsedData.totalResults,
             hasError: "False"
         })
+        this.props.setProgress(100)
     }
 
 
@@ -123,7 +130,7 @@ export class News extends Component {
                     next={this.fetchMoreData}
                     // hasMore={(this.state.articles.length < this.state.totalResults) || (this.hasError === false)}
                     hasMore={this.state.hasError === "True" ? false : true}
-                    loader={this.state.hasError === "True" ?  null:<Spinner />}
+                    loader={this.state.hasError === "True" ? null : <Spinner />}
                 >
 
                     <div className="container">
