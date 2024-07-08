@@ -11,7 +11,7 @@
 * This web app uses the API from NewsAPI which has a limit
 * After the limit of API exhausts, you won't be able to use this app!
 
-# How to use this script as a coder:
+# How to use this script:
 
 * Step 1: Clone this repo using the following command.
 
