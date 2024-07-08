@@ -1,6 +1,6 @@
 
 # NewsMonkey : A basic react application project can be used to stay updated to the world!
-[sample Image](https://github.com/deepanshu-prajapati01/newsMonkeyWebApplication/blob/master/sampleImages/Screenshot%202024-07-08%20134321.png)
+![sample Image](https://github.com/deepanshu-prajapati01/newsMonkeyWebApplication/blob/master/sampleImages/Screenshot%202024-07-08%20134321.png)
 # Benefits of using this script:
 
 * You will stay updated to the things going around you.
