@@ -32,7 +32,7 @@ const News = (props) => {
 
     useEffect(() => {
         updateNews()
-    })
+    }, [])
 
     const fetchMoreData = async () => {
         let api = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&pageSize=${props.pageSize}&page=${page + 1}`;
@@ -65,7 +65,7 @@ const News = (props) => {
     return (
         <>
             <h1 className='text-center' style={{ margin: "1rem" }}>NewsMonkey - Top Headlines</h1>
-            {loading === true ? <Spinner /> : null}
+            {/* {loading === true ? <Spinner /> : null} */}
             <InfiniteScroll
                 dataLength={articles}
                 next={fetchMoreData}
